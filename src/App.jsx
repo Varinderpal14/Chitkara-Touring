@@ -10,12 +10,13 @@ import Signup from "./components/signup"
 import Blog from "./components/Blog"
 import Testimonials from "./components/Testimonials"
 import Contact from "./components/Contact"
-
+import { AuthContextProvider } from './context/AuthContext.js';
+import { Toaster } from 'react-hot-toast';
 
 function App() {
   return (
-    <>
     <Router>
+    <AuthContextProvider>
       <Header/>
       <Routes>
         <Route path='/' element={<Home/>}/>
@@ -27,8 +28,9 @@ function App() {
         <Route path='/Contact' element={<Contact/>}/>
       </Routes>
       <Footer/>
+    </AuthContextProvider>
+    <Toaster />
     </Router>
-    </>
   );
 }
 

@@ -73,7 +73,7 @@ const Header = () => {
 
               <Link to={"/contact"}>
               <Button onClick={onClose} variant={"ghost"}  colorScheme='purple'>
-                Contact
+                Contact Us
               </Button></Link>
             </VStack>
 

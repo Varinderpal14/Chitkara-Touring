@@ -1,13 +1,8 @@
 import React, { useRef, useState } from 'react';
 import hero from '../assets/hero.png';
 import { Swiper, SwiperSlide } from 'swiper/react';
-import {
-  EffectFade,
-  Autoplay,
-  Navigation,
-  Pagination,
-} from 'swiper/modules';
-import SwiperCore from 'swiper'
+import { EffectFade, Autoplay, Navigation, Pagination } from 'swiper/modules';
+import SwiperCore from 'swiper';
 import 'swiper/css/bundle';
 import {
   Box,
@@ -26,7 +21,7 @@ import { data } from '../database/data';
 export default function Home() {
   const [_, setInit] = useState();
 
-  const nData = data.slice(0,6);
+  const nData = data.slice(0, 6);
 
   const prevRef = useRef(null);
   const nextRef = useRef(null);
@@ -82,7 +77,7 @@ export default function Home() {
                 </Button>
               </a>
               <a href="#services">
-              <Button rounded={'full'}>About Us</Button>
+                <Button rounded={'full'}>About Us</Button>
               </a>
             </Stack>
           </Stack>
@@ -105,7 +100,6 @@ export default function Home() {
           Deals Of The Day
         </Heading>
 
-     
         <div className="w-full swiper md:pt-12 pt-6 pb-10 relative">
           <div className="overflow-hidden w-full">
             <div className="w-full mb-6 p-2">
@@ -143,7 +137,7 @@ export default function Home() {
                 }}
               >
                 {nData.map((item, ind) => (
-                  <SwiperSlide key={ind} >
+                  <SwiperSlide key={ind}>
                     <CardCustom data={item} />
                   </SwiperSlide>
                 ))}

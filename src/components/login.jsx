@@ -12,8 +12,29 @@ import {
   Stack,
   Image,
 } from '@chakra-ui/react'
+import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { UserAuth } from '../context/AuthContext';
+import toast from 'react-hot-toast';
 
 export default function SplitScreen() {
+  const [email,setEmail] = useState('');
+  const [password,setPassword] = useState('');
+  const {user,logIn} = UserAuth();
+  const navigate = useNavigate();
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    try{
+      await logIn(email,password);
+      toast.success("Sign Up Success");
+      navigate('/');
+    }
+    catch(error){
+      console.log(error);
+      toast.error("Glt h bhai");
+    }
+  }
   return (
     <Stack minH={'100vh'} direction={{ base: 'column', md: 'row' }}>
       <Flex p={8} flex={1} align={'center'} justify={'center'}>
@@ -21,11 +42,11 @@ export default function SplitScreen() {
           <Heading fontSize={'4xl'}>Login in to your account</Heading>
           <FormControl id="email">
             <FormLabel>Email address</FormLabel>
-            <Input type="email" />
+            <Input type="email" onChange={(e) => setEmail(e.target.value)}/>
           </FormControl>
           <FormControl id="password">
             <FormLabel>Password</FormLabel>
-            <Input type="password" />
+            <Input type="password" onChange={(e) => setPassword(e.target.value)}/>
           </FormControl>
           <Stack spacing={6}>
             <Stack
@@ -35,8 +56,8 @@ export default function SplitScreen() {
               <Checkbox>Remember me</Checkbox>
               <Text color={'blue.500'}>Forgot password?</Text>
             </Stack>
-            <Button colorScheme={'blue'} variant={'solid'}>
-              Sign in
+            <Button colorScheme={'blue'} variant={'solid'} onClick={handleSubmit}>
+              Log in
             </Button>
           </Stack>
         </Stack>
